@@ -1,15 +1,22 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 
-const Home = () => {
+const Login = () => {
 
-    const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+
+    const [formData,setformData] = useState({
+        email:"",
+        password:""
+    })
+
+const handelForm = (e)=>{
+    const {name,value} = e.target
+    setformData({...formData,[name]:value})
+}
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle login logic here
-    console.log('Email:', email);
-    console.log('Password:', password);
+    
   };
   return (
     <div>
@@ -26,8 +33,9 @@ const Home = () => {
                   className="form-control mt-2"
                   id="email"
                   placeholder="Enter email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  name='email'
+                  value={formData.email}
+                  onChange={handelForm}
                   required
                 />
               </div>
@@ -38,8 +46,9 @@ const Home = () => {
                   className="form-control mt-2"
                   id="password"
                   placeholder="Password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  name='password'
+                  value={formData.password}
+                  onChange={handelForm}
                   required
                 />
               </div>
@@ -49,7 +58,7 @@ const Home = () => {
               </div>
               <hr />
               <div>
-                <p>if there has no Account then Register</p>
+                <p>if there has no Account then <Link to="/register">Register</Link></p>
               </div>
             </form>
           </div>
@@ -61,4 +70,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default Login
