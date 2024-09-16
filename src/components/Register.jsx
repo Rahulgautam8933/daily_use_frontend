@@ -1,20 +1,29 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-const Login = () => {
+const Register = () => {
   const [formData, setformData] = useState({
     email: "",
-    password: ""
+    password: "",
+    confirmPassword: "" // Added for confirmation
   });
 
-  const handelForm = (e) => {
+  const handleForm = (e) => {
     const { name, value } = e.target;
     setformData({ ...formData, [name]: value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission logic here
+    
+    // Handle registration logic here
+    if (formData.password !== formData.confirmPassword) {
+      alert("Passwords do not match");
+      return;
+    }
+    
+    // Registration logic can go here
+    console.log("Registering", formData);
   };
 
   return (
@@ -22,7 +31,7 @@ const Login = () => {
       <div className="row w-100 justify-content-center">
         <div className="col-md-6 col-lg-4">
           <div className="card p-4">
-            <h1 className="text-center mb-4">Login</h1>
+            <h1 className="text-center mb-4">Register</h1>
             <form onSubmit={handleSubmit}>
               <div className="form-group">
                 <label className='mt-2' htmlFor="email">Email address</label>
@@ -33,7 +42,7 @@ const Login = () => {
                   placeholder="Enter email"
                   name='email'
                   value={formData.email}
-                  onChange={handelForm}
+                  onChange={handleForm}
                   required
                 />
               </div>
@@ -46,16 +55,29 @@ const Login = () => {
                   placeholder="Password"
                   name='password'
                   value={formData.password}
-                  onChange={handelForm}
+                  onChange={handleForm}
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label className='mt-2' htmlFor="confirmPassword">Confirm Password</label>
+                <input
+                  type="password"
+                  className="form-control mt-2"
+                  id="confirmPassword"
+                  placeholder="Confirm Password"
+                  name='confirmPassword'
+                  value={formData.confirmPassword}
+                  onChange={handleForm}
                   required
                 />
               </div>
               <div className='mt-2 d-flex justify-content-center'>
-                <button type="submit" className="btn btn-primary btn-block">Submit</button>
+                <button type="submit" className="btn btn-primary btn-block">Register</button>
               </div>
               <hr />
               <div>
-                <p>If you don't have an account, then <Link to="/register">Register</Link></p>
+                <p>Already have an account? <Link to="/login">Login</Link></p>
               </div>
             </form>
           </div>
@@ -65,4 +87,4 @@ const Login = () => {
   );
 }
 
-export default Login;
+export default Register;
