@@ -18,3 +18,34 @@ body {
 .btn-primary:hover {
   background-color: #0056b3;
 }
+
+
+
+.table-header {
+  background-color: black;
+  color: white;
+  text-align: center;
+}
+
+.table-row {
+  background-color: white; /* You can customize the row background color */
+}
+
+  thead {
+  border-color: inherit;
+  border-style: solid;
+  border-width: 0;
+  background: black;
+  color: wheat;
+}
+
+/* Home.css */
+.ant-table-header {
+  background-color: black !important; /* Header background color */
+  color: white !important; /* Header text color */
+}
+
+.ant-table th {
+  color: white; /* Ensures the text color is white */
+}
+
